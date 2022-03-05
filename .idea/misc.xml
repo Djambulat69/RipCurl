@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Djamb/AndroidStudioProjects/RipCurl/app/src/main/res/drawable/ic_back.xml" value="0.1855" />
+        <entry key="..\:/Users/aydem/StudioProjects/RipCurl/app/src/main/res/drawable/ic_back.xml" value="0.2495" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

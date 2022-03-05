@@ -9,7 +9,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,11 +25,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RipCurlTheme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
+                window.statusBarColor = MaterialTheme.colors.primary.toArgb()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
                     ConstraintLayout {
 
                         val appBar = createRef()
                         val corpLogo = createRef()
+                        val underLogoText = createRef()
+                        val bottomText = createRef()
 
                         TopAppBar(
                             title = {
@@ -39,9 +47,14 @@ class MainActivity : ComponentActivity() {
                                     color = Color.Black
                                 )
                             },
+                            elevation = 0.dp,
                             navigationIcon = {
                                 IconButton(onClick = { }) {
-                                    Icon(painter = painterResource(R.drawable.ic_back), contentDescription = null)
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_back),
+                                        contentDescription = null,
+                                        tint = Color.Unspecified
+                                    )
                                 }
                             },
                             modifier = Modifier.constrainAs(appBar) {
@@ -58,23 +71,30 @@ class MainActivity : ComponentActivity() {
                             }
                         )
 
+                        Text(
+                            text = stringResource(R.string.under_logo_text),
+                            textAlign = TextAlign.Center,
+                            fontSize = 16.sp,
+                            color = Color.Black,
+                            modifier = Modifier.constrainAs(underLogoText) {
+                                top.linkTo(corpLogo.bottom, margin = 36.dp)
+                                centerHorizontallyTo(parent)
+                            }
+                        )
 
+                        Text(
+                            text = stringResource(R.string.bottom_text),
+                            textAlign = TextAlign.Center,
+                            fontSize = 16.sp,
+                            color = Color.LightGray,
+                            modifier = Modifier.constrainAs(bottomText) {
+                                bottom.linkTo(parent.bottom, margin = 60.dp)
+                                centerHorizontallyTo(parent)
+                            }
+                        )
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    RipCurlTheme {
-        Greeting("Android")
     }
 }
