@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -33,41 +34,43 @@ class MainActivity : ComponentActivity() {
                 ) {
                     ConstraintLayout {
 
-                        val appBar = createRef()
+                        val appBarTitle = createRef()
+                        val backButton = createRef()
                         val corpLogo = createRef()
                         val underLogoText = createRef()
                         val bottomText = createRef()
 
-                        TopAppBar(
-                            title = {
-                                Text(
-                                    text = getString(R.string.about_app),
-                                    textAlign = TextAlign.Center,
-                                    fontSize = 24.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.Black
-                                )
-                            },
-                            elevation = 0.dp,
-                            navigationIcon = {
-                                IconButton(onClick = { }) {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_back),
-                                        contentDescription = null,
-                                        tint = Color.Unspecified
-                                    )
-                                }
-                            },
-                            modifier = Modifier.constrainAs(appBar) {
-                                top.linkTo(parent.top, margin = 56.dp)
+                        Text(
+                            text = getString(R.string.about_app),
+                            textAlign = TextAlign.Center,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            modifier = Modifier.constrainAs(appBarTitle) {
+                                top.linkTo(parent.top, margin = 60.dp)
+                                centerHorizontallyTo(parent)
                             }
                         )
+
+                        IconButton(
+                            onClick = { },
+                            modifier = Modifier.constrainAs(backButton) {
+                                start.linkTo(parent.start, margin = 16.dp)
+                                top.linkTo(parent.top, margin = 56.dp)
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_back),
+                                contentDescription = null,
+                                tint = Color.Unspecified,
+                            )
+                        }
 
                         Image(
                             painter = painterResource(R.drawable.logo_corp),
                             contentDescription = null,
                             modifier = Modifier.constrainAs(corpLogo) {
-                                top.linkTo(appBar.bottom, margin = 192.dp)
+                                top.linkTo(appBarTitle.bottom, margin = 192.dp)
                                 centerHorizontallyTo(parent)
                             }
                         )
