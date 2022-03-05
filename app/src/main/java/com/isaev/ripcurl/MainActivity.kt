@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RipCurlTheme {
                 window.statusBarColor = MaterialTheme.colors.primary.toArgb()
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -58,7 +59,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             },
                             modifier = Modifier.constrainAs(appBar) {
-                                top.linkTo(parent.top)
+                                top.linkTo(parent.top, margin = 56.dp)
                             }
                         )
 
